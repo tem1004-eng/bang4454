@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radio Script Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client"
+  }
+}
+</script>
+<style>
+  @media print {
+    body {
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+    }
+    .no-print {
+      display: none !important;
+    }
+    .print-container {
+      display: block !important;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    .print-page-wrapper {
+      width: 1024px !important; /* Force editor width for consistent text reflow */
+      /* A4 width is approx 794px at 96dpi. 794 / 1024 = 0.775 */
+      transform: scale(0.775); 
+      transform-origin: top left;
+      page-break-after: always;
+      margin-bottom: 0;
+      overflow: visible !important;
+    }
+    .print-page {
+      box-shadow: none !important;
+      border: none !important;
+      overflow: visible !important;
+    }
+     @page {
+      size: A4 portrait;
+      margin: 0; 
+    }
+  }
+  [contenteditable="true"]:empty::before {
+    content: attr(data-placeholder);
+    color: grey;
+    pointer-events: none;
+    display: block; /* For the content to actually show */
+  }
+</style>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
